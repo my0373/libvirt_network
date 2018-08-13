@@ -1,0 +1,16 @@
+<network>
+  <name>{{ item.libvirt_net_name }}</name>
+  <forward mode='nat'>
+    <nat>
+      <port start='1024' end='65535'/>
+    </nat>
+  </forward>
+  <domain name='lab.local'/>
+  <ip address='{{ item.libvirt_net_gateway }}' netmask='{{ item.libvirt_net_subnet }}'>
+  {% if item.libvirt_enable_dhcp %}
+    <dhcp>
+      <range start='{{ item.libvirt_dhcp_start_address }}' end='{{ item.libvirt_dhcp_end_address }}'/>
+    </dhcp>
+  {% endif %}
+  </ip>
+</network>

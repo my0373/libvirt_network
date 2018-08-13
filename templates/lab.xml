@@ -1,0 +1,17 @@
+<network>
+  <name>{{ libvirt_net_name }}</name>
+  <forward mode='nat'>
+    <nat>
+      <port start='1024' end='65535'/>
+    </nat>
+  </forward>
+  <bridge name='virbr1' stp='{{ libvirt_net_stp }}' delay='0'/>
+  <domain name='lab.local'/>
+  <ip address='{{ libvirt_net_gateway }}' netmask='{{ libvirt_net_subnet }}'>
+  {% if libvirt_enable_dhcp %}
+    <dhcp>
+      <range start='{{ libvirt_dhcp_start_address }}' end='{{ libvirt_dhcp_end_address }}'/>
+    </dhcp>
+  {% end %}
+  </ip>
+</network>

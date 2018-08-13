@@ -1,0 +1,13 @@
+---
+libvirt_networks:
+- libvirt_net_name: 'lab2'
+  libvirt_net_gateway: '192.168.119.1'
+  libvirt_net_subnet: '255.255.255.0'
+  libvirt_dhcp_start_address: '192.168.119.100'
+  libvirt_dhcp_end_address: '192.168.119.100'
+  libvirt_enable_dhcp: True
+
+- libvirt_net_name: 'lab3'
+  libvirt_net_gateway: '192.168.120.1'
+  libvirt_net_subnet: '255.255.255.0'
+  libvirt_enable_dhcp: False

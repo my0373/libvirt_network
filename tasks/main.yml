@@ -1,0 +1,22 @@
+---
+# Define each of the virtual networks.
+- name: Define virtual networks
+  virt_net:
+    command: define
+    name: "{{ item.libvirt_net_name }}"
+    xml: '{{ lookup("template", "networks.xml.j2") }}'
+  with_items: "{{ libvirt_networks }}"
+
+# Start the virtual networks.
+- name: Start the virtual networks
+  virt_net:
+    state: active
+    name: "{{ item.libvirt_net_name }}"
+  with_items: "{{ libvirt_networks }}"
+
+# Set the autostart 
+- name: Start the virtual networks to autostart
+  virt_net:
+    autostart: yes
+    name: "{{ item.libvirt_net_name }}"
+  with_items: "{{ libvirt_networks }}"
